@@ -1,7 +1,7 @@
 {
   "name": "awaitress",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.2",
+  "description": "A simple library to make timer things async",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha -r ts-node/register 'src/**/*.spec.ts'",
