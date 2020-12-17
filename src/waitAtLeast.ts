@@ -1,11 +1,11 @@
 import wait from './wait';
 
-export default function waitAtLeast(ms: number) {
+export default function waitAtLeast(delay: number): () => Promise<boolean> {
   const startTime = +new Date();
 
   return async function waiting() {
     const now = +new Date();
-    const timeDiff = (startTime + ms) - now;
+    const timeDiff = (startTime + delay) - now;
 
     if (timeDiff < 0) {
       return true;

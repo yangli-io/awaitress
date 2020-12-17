@@ -2,6 +2,9 @@
 
 A small library to handle timeouts asynchronously
 
+- [x] browsers
+- [x] node.js
+
 ## Installation
 
 ```bash
@@ -16,6 +19,8 @@ yarn install
 This is a simply converting setTimeout into asynchronous usage
 
 ```js
+import { wait } from 'awaitress'
+
 async function doSomethingAfter10Seconds() {
   console.log('start');
   await wait(10000);
@@ -29,6 +34,8 @@ This allows you to make sure at least a certain amount of time has elapsed befor
 
 In the example below, we make sure we do an action after waiting a minimum of 10 seconds but also after the httpRequest
 ```js
+import { waitAtLeast } from 'awaitress'
+
 async function doSomethingAfter10Seconds() {
   console.log('start');
 

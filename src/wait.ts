@@ -1,5 +1,5 @@
-export default function wait(ms: number): Promise<void> {
+export default function wait(delay: number): Promise<void> {
   return new Promise((resolve: () => void) => {
-    setTimeout(resolve, ms)
+    setTimeout(resolve, delay)
   })
 }
