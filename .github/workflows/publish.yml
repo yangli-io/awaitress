@@ -23,7 +23,6 @@ jobs:
     - run: npm run build --if-present
     - run: npm test
     - run: npm publish
-
-env:
-  NPM_TOKEN: ${{env.NPM_TOKEN}}
+    env:
+      NPM_TOKEN: ${{env.NPM_TOKEN}}
 
