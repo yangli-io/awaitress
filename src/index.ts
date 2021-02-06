@@ -1,5 +1,3 @@
-import _wait from './wait';
-import _waitAtLeast from './waitAtLeast';
-
-export const wait = _wait;
-export const waitAtLeast = _waitAtLeast;
+export { default as wait } from './wait'
+export { default as waitAtLeast} from './waitAtLeast'
+export { default as AsyncPolling } from './AsyncPolling'

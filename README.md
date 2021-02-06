@@ -65,5 +65,19 @@ async function doSomethingAfter10Seconds() {
 }
 ```
 
-## TODO:
-- Add a asynchronous polling mechanism
+## AsyncPolling
+
+This can be used to polling APIs, this is different from normal polling.
+Async polling will wait for your API to complete before starting the count down timer. 
+This helps prevent queueing up too many polling requests if the first request takes too long.
+
+```js
+const poll = new AsyncPolling(fn, 30);
+
+poll.start();
+```
+
+## Todo
+
+* Add Pause to Async Polling
+
