@@ -1,10 +1,11 @@
 import wait from './wait'
 
 export default class AsyncPolling {
-  cb: () => void;
-  ms: number;
-  polling = false;
-  started = false;
+  private cb: () => void;
+  private ms: number;
+  private polling = false;
+  private started = false;
+  private paused = false;
 
   constructor(cb: () => void, ms: number) {
     this.cb = cb;
@@ -12,12 +13,22 @@ export default class AsyncPolling {
   }
 
   async poll(): Promise<void> {
-    await this.cb();
+    if (!this.paused) {
+      await this.cb();
+    }
     await wait(this.ms);
 
     if (this.polling) {
       this.poll();
     }
+  }
+
+  pause() {
+    this.paused = true;
+  }
+
+  unpause() {
+    this.paused = false;
   }
 
   start() {

@@ -75,9 +75,11 @@ This helps prevent queueing up too many polling requests if the first request ta
 const poll = new AsyncPolling(fn, 30);
 
 poll.start();
+
+poll.pause();
+
+poll.unpause();
+
+poll.stop();
 ```
-
-## Todo
-
-* Add Pause to Async Polling
 
