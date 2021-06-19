@@ -8,11 +8,11 @@ A small library to handle timeouts asynchronously
 ## Installation
 
 ```bash
-npm install
+npm install awaitress
 ```
 or 
 ```bash
-yarn install
+yarn install awaitress
 ```
 
 ## Wait
@@ -72,14 +72,31 @@ Async polling will wait for your API to complete before starting the count down 
 This helps prevent queueing up too many polling requests if the first request takes too long.
 
 ```js
-const poll = new AsyncPolling(fn, 30);
+const fn = () => console.log('hello world');
+
+const poll = new AsyncPolling(fn, 30000); // every 30 seconds
 
 poll.start();
 
 poll.pause();
+
+poll.trigger(); // Calls the API and resets the timer, incase you need to prematurely call the API
 
 poll.unpause();
 
 poll.stop();
 ```
 
+### Methods
+
+#### poll.start()
+Starts the poll, can only start once
+
+#### poll.pause()
+Pauses the poll, can use unpause to restart. The timer will continue but nothing is triggered
+
+#### poll.trigger()
+triggers the poll and resets the timer. Useful if you need an update after an action
+
+#### poll.stop()
+completely stops the poll and cannot be started again.

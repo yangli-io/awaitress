@@ -1,4 +1,4 @@
-import wait from './wait'
+import { cancellableWait } from './wait'
 
 export default class AsyncPolling {
   private cb: () => void;
@@ -6,6 +6,7 @@ export default class AsyncPolling {
   private polling = false;
   private started = false;
   private paused = false;
+  private cancelWait: () => void = () => {};
 
   constructor(cb: () => void, ms: number) {
     this.cb = cb;
@@ -16,7 +17,12 @@ export default class AsyncPolling {
     if (!this.paused) {
       await this.cb();
     }
-    await wait(this.ms);
+
+    const { wait, cancel } = cancellableWait(this.ms);
+
+    this.cancelWait = cancel;
+
+    await wait();
 
     if (this.polling) {
       this.poll();
@@ -29,6 +35,12 @@ export default class AsyncPolling {
 
   unpause() {
     this.paused = false;
+  }
+
+  trigger() {
+    this.cancelWait();
+
+    this.poll();
   }
 
   start() {
