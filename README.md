@@ -12,7 +12,7 @@ npm install awaitress
 ```
 or 
 ```bash
-yarn install awaitress
+yarn add awaitress
 ```
 
 ## Wait
